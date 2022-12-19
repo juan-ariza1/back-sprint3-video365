@@ -32,7 +32,7 @@ public class CategoryService {
     @Autowired
     IMovieRepository movieRepository;
 
-    public Iterable<Category> get() {
+    public Iterable<Category> getByMoviesCategory() {
         Iterable<Category> response;
 
         Iterable<Movie> movies = movieRepository.findAll();
@@ -50,6 +50,14 @@ public class CategoryService {
                 }
             }
         }
+
+        return categories;
+    }
+
+    public Iterable<Category> get() {
+        Iterable<Category> response;
+
+        Iterable<Category> categories = repository.getAll();
 
         return categories;
     }
