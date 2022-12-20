@@ -10,6 +10,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -35,6 +36,7 @@ public class Movie implements Serializable {
     private String trailerLink;
     private String imageLink;
     private String description;
+    @DocumentReference
     private List<Category> categories;
     private List<Staff> staffList;
     

@@ -6,6 +6,7 @@ package com.app.movie.repository;
 
 import com.app.movie.entities.Client;
 import com.app.movie.entities.Movie;
+import com.app.movie.entities.Score;
 import com.app.movie.interfaces.IClientRepository;
 import com.app.movie.interfaces.IMovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +37,12 @@ public class MovieRepository {
         Optional<Movie> response= repository.findById(id);
         return response;
     }
-    
+
+    public List<Movie> getMovieInCategory(String categoryId){
+        return  repository.getMoviesByCategory(categoryId);
+    }
+
+
     public Boolean existsById(String id){
         return repository.existsById(id);
     }

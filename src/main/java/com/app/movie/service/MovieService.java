@@ -5,7 +5,11 @@
 package com.app.movie.service;
 
 import com.app.movie.dto.ResponseDto;
+import com.app.movie.entities.Client;
 import com.app.movie.entities.Movie;
+import com.app.movie.entities.Score;
+import com.app.movie.repository.CategoryRepository;
+import com.app.movie.repository.ClientRepository;
 import com.app.movie.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +29,8 @@ public class MovieService {
 
     @Autowired
     MovieRepository repository;
+    @Autowired
+    CategoryRepository categoryRepository;
 
     public Iterable<Movie> get() {
         Iterable<Movie> response = repository.getAll();
@@ -35,6 +41,12 @@ public class MovieService {
         Optional<Movie> response = repository.findById(id);
         return response;
     }
+
+    public List<Movie> checkMovieForCategory(String categoryId){
+        return repository.getMovieInCategory(categoryId);
+    }
+
+
 
     public ResponseDto create(Movie request) {
         ResponseDto response = new ResponseDto();
