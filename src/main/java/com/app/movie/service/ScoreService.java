@@ -50,7 +50,7 @@ public class ScoreService {
         Optional<Client> client = clientService.getByCredential(authorization);
         if(movie.isPresent() && client.isPresent()){
             List<Score> scores = repository.findByMovieAndClient(movie.get().getId(),client.get().getId());
-            if(!scores.isEmpty()){
+            if(scores.size()>0){
                 score = scores.get(scores.size()-1);
             }
         }
