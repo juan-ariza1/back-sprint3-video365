@@ -13,7 +13,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
 
 /**
@@ -38,17 +37,12 @@ public class MovieController {
         return service.getById(id);
     }
 
-    @GetMapping("/category/{categoryId}")
-    public List<Movie> checkMovieForCategory(@PathVariable("categoryId")String categoryId){
-        return service.checkMovieForCategory(categoryId);
-    }
-
     @PostMapping("")
     public ResponseEntity<ResponseDto>  create(@RequestBody Movie request) {
         ResponseDto responseDto = service.create(request);
         ResponseEntity<ResponseDto> response = new ResponseEntity<>(responseDto,HttpStatus.CONFLICT);
 
-        if(responseDto.status.booleanValue()){
+        if(responseDto.status.booleanValue()==true){
             response = new ResponseEntity<>(responseDto,HttpStatus.CREATED);
         }
 
